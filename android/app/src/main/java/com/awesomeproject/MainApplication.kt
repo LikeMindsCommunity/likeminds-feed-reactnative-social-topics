@@ -1,4 +1,4 @@
-package com.awesomeproject
+package com.socailtopics
 
 import android.app.Application
 import com.facebook.react.PackageList
