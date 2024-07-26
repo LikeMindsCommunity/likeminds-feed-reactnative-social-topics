@@ -1,4 +1,4 @@
-package com.socailtopics
+package com.socialtopics
 
 import android.app.Application
 import com.facebook.react.PackageList

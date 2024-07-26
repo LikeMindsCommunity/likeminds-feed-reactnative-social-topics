@@ -5,8 +5,6 @@ import {getRoute, getNotification} from '@likeminds.community/feed-rn-core';
 import messaging from '@react-native-firebase/messaging';
 import notifee, {EventType} from '@notifee/react-native';
 import * as RootNavigation from './RootNavigation.js';
-import {RealmProvider} from '@realm/react';
-import {LoginSchemaRO} from './login/loginSchemaRO';
 
 // notification display for background state
 notifee.onBackgroundEvent(async ({type, detail}) => {
@@ -28,9 +26,7 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 });
 
 const WrappedApp = () => (
-  <RealmProvider schema={[LoginSchemaRO]}>
     <App />
-  </RealmProvider>
 );
 
 AppRegistry.registerComponent(appName, () => WrappedApp);

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "socailTopics.app"
-               BlueprintName = "socailTopics"
-               ReferencedContainer = "container:socailTopics.xcodeproj">
+               BuildableName = "socialTopics.app"
+               BlueprintName = "socialTopics"
+               ReferencedContainer = "container:socialTopics.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "AwesomeProjectTests.xctest"
                BlueprintName = "AwesomeProjectTests"
-               ReferencedContainer = "container:socailTopics.xcodeproj">
+               ReferencedContainer = "container:socialTopics.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "socailTopics.app"
-            BlueprintName = "socailTopics"
-            ReferencedContainer = "container:socailTopics.xcodeproj">
+            BuildableName = "socialTopics.app"
+            BlueprintName = "socialTopics"
+            ReferencedContainer = "container:socialTopics.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "socailTopics.app"
-            BlueprintName = "socailTopics"
-            ReferencedContainer = "container:socailTopics.xcodeproj">
+            BuildableName = "socialTopics.app"
+            BlueprintName = "socialTopics"
+            ReferencedContainer = "container:socialTopics.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
