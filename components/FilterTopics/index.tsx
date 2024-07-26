@@ -156,10 +156,10 @@ const FilterTopics = () => {
                   </View>
                 </TouchableOpacity>
               </View>
-              {Object.keys(topics)?.map((item, index) => {
+              {Object.keys(topics)?.map((item) => {
                 const isSelected = item === selectedTopics[0] ? true : false;
                 return (
-                  <View key={index} style={{margin: Layout.normalize(5)}}>
+                  <View key={item} style={{margin: Layout.normalize(5)}}>
                     <TouchableOpacity
                       onPress={() => handleIndividualTopicsPress(item)}>
                       <View

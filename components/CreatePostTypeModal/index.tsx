@@ -54,15 +54,14 @@ const CreatePostTypeModal = ({
                 />
               </View>
               <ScrollView style={{display: 'flex', flexDirection: 'column'}}>
-                {Object.keys(topics)?.map(item => {
+                {Object.keys(topics)?.map((item, index) => {
                   const isCoachCentre =
                     topics[item]?.name === "Coach's Center" ? true : false;
 
                   return (
-                    <>
+                    <View key={index}>
                       {isCoachCentre && memberData?.state === STATE_ADMIN ? (
                         <TouchableOpacity
-                          key={item}
                           onPress={() => {
                             dispatch({
                               type: SET_PREDEFINED_TOPICS,
@@ -86,7 +85,6 @@ const CreatePostTypeModal = ({
                         </TouchableOpacity>
                       ) : !isCoachCentre ? (
                         <TouchableOpacity
-                          key={item}
                           onPress={() => {
                             dispatch({
                               type: SET_PREDEFINED_TOPICS,
@@ -109,7 +107,7 @@ const CreatePostTypeModal = ({
                           </Text>
                         </TouchableOpacity>
                       ) : null}
-                    </>
+                    </View>
                   );
                 })}
 

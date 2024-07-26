@@ -9,6 +9,7 @@ import {pushAPI, token} from '../pushNotification';
 import {useAppSelector} from '@likeminds.community/feed-rn-core/store/store';
 import FilterTopics from '../components/FilterTopics';
 import CreatePostButton from '../components/CreatePostButton';
+import {View} from 'react-native';
 
 const Feed = () => {
   const mappedTopics = useAppSelector((state: any) => state.feed.mappedTopics);
@@ -30,13 +31,15 @@ const Feed = () => {
   // }, [FCMToken]);
 
   return (
-    <UniversalFeed>
-      <LMUniversalFeedHeader />
-      <FilterTopics />
-      <LMPostUploadIndicator />
-      <PostsList items={mappedTopics} />
-      <CreatePostButton />
-    </UniversalFeed>
+    <View style={{flex: 1, backgroundColor: 'black'}}>
+      <UniversalFeed>
+        <LMUniversalFeedHeader />
+        <FilterTopics />
+        <LMPostUploadIndicator />
+        <PostsList items={mappedTopics} />
+        <CreatePostButton />
+      </UniversalFeed>
+    </View>
   );
 };
 
