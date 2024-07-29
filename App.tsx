@@ -34,7 +34,6 @@ import NotificationWrapper from './feedScreen/notificationWrapper';
 import messaging from '@react-native-firebase/messaging';
 import notifee, {EventType} from '@notifee/react-native';
 import {Credentials} from './login/credentials';
-// import FetchKeyInputScreen from './login';
 import {
   CREATE_POLL_SCREEN,
   POLL_RESULT,
@@ -205,10 +204,23 @@ const App = () => {
     };
   }, []);
 
+  useEffect(() => {
+    STYLES.setTheme({
+      hue: 18,
+      isDarkTheme: true,
+      primaryColor: '#ff4e02',
+    });
+  });
+
   const footerStyle = {
     footer: {
       showBookMarkIcon: false,
       showShareIcon: false,
+      likeIconButton: {
+        icon: {
+          color: 'grey',
+        },
+      },
     },
   };
 

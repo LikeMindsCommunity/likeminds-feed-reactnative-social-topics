@@ -142,13 +142,14 @@ const FilterTopics = () => {
                       alignItems: 'center',
                       padding: Layout.normalize(7),
                       borderWidth: 1,
-                      borderColor: selectedTopics.length === 0 ? '#5046E5' : 'grey',
+                      borderColor:
+                        selectedTopics.length === 0 ? '#ff4e02' : 'grey',
                       borderRadius: Layout.normalize(5),
                     }}>
                     <Text
                       style={{
-                        fontSize: Layout.normalize(16),
-                        color: selectedTopics.length === 0 ? '#5046E5' : 'grey',
+                        fontSize: Layout.normalize(14),
+                        color: selectedTopics.length === 0 ? '#ff4e02' : 'grey',
                         fontWeight: '400',
                       }}>
                       {'All'}
@@ -156,7 +157,7 @@ const FilterTopics = () => {
                   </View>
                 </TouchableOpacity>
               </View>
-              {Object.keys(topics)?.map((item) => {
+              {Object.keys(topics)?.map(item => {
                 const isSelected = item === selectedTopics[0] ? true : false;
                 return (
                   <View key={item} style={{margin: Layout.normalize(5)}}>
@@ -173,7 +174,7 @@ const FilterTopics = () => {
                         }}>
                         <Text
                           style={{
-                            fontSize: Layout.normalize(16),
+                            fontSize: Layout.normalize(14),
                             color: isSelected ? '#5046E5' : 'grey',
                             fontWeight: '400',
                           }}>

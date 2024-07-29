@@ -35,14 +35,17 @@ const CreatePostTypeModal = ({
   const memberData = useAppSelector(state => state.login.member);
 
   return (
-    <View>
+    <View style={{backgroundColor: 'black'}}>
       <Modal
         transparent={true}
         visible={actionAlertModalVisible}
         onRequestClose={hideActionModal}>
         <Pressable style={styles.centeredView} onPress={hideActionModal}>
-          <View>
-            <Pressable onPress={() => {}} style={[styles.modalView]}>
+          <View
+            style={{backgroundColor: 'black', padding: 20, borderRadius: 10}}>
+            <Pressable
+              onPress={() => {}}
+              style={[styles.modalView, {backgroundColor: 'black'}]}>
               <View style={{padding: 15, paddingBottom: 10}}>
                 <View
                   style={{
@@ -79,7 +82,7 @@ const CreatePostTypeModal = ({
                             justifyContent: 'center',
                             padding: 10,
                           }}>
-                          <Text style={{color: 'black', fontSize: 16}}>
+                          <Text style={{color: 'white', fontSize: 18}}>
                             {topics[item]?.name}
                           </Text>
                         </TouchableOpacity>
@@ -102,7 +105,7 @@ const CreatePostTypeModal = ({
                             justifyContent: 'center',
                             padding: 10,
                           }}>
-                          <Text style={{color: 'black', fontSize: 16}}>
+                          <Text style={{color: 'white', fontSize: 18}}>
                             {topics[item]?.name}
                           </Text>
                         </TouchableOpacity>
@@ -120,7 +123,7 @@ const CreatePostTypeModal = ({
                     justifyContent: 'center',
                     padding: 10,
                   }}>
-                  <Text style={{color: 'blue', fontSize: 16}}>Cancel</Text>
+                  <Text style={{color: '#ff4e02', fontSize: 18}}>Cancel</Text>
                 </TouchableOpacity>
               </ScrollView>
             </Pressable>
