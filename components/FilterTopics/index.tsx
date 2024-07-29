@@ -169,13 +169,13 @@ const FilterTopics = () => {
                           alignItems: 'center',
                           padding: Layout.normalize(7),
                           borderWidth: 1,
-                          borderColor: isSelected ? '#5046E5' : 'grey',
+                          borderColor: isSelected ? '#ff4e02' : 'grey',
                           borderRadius: Layout.normalize(5),
                         }}>
                         <Text
                           style={{
                             fontSize: Layout.normalize(14),
-                            color: isSelected ? '#5046E5' : 'grey',
+                            color: isSelected ? '#ff4e02' : 'grey',
                             fontWeight: '400',
                           }}>
                           {topics[item]?.name}
