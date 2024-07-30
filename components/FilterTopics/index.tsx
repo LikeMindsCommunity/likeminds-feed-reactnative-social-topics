@@ -14,6 +14,7 @@ import {
 } from '@likeminds.community/feed-rn-core/store/types/types';
 import Layout from '@likeminds.community/feed-rn-core/constants/Layout';
 import {styles} from '@likeminds.community/feed-rn-core/screens/universalFeed/styles';
+import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
 
 const FilterTopics = () => {
   const dispatch = useAppDispatch();
@@ -120,7 +121,12 @@ const FilterTopics = () => {
   }, [mappedTopics, feedData]);
 
   return (
-    <View style={{backgroundColor: 'black'}}>
+    <View
+      style={{
+        backgroundColor: STYLES.$IS_DARK_THEME
+          ? STYLES.$BACKGROUND_COLORS.DARK
+          : STYLES.$BACKGROUND_COLORS.LIGHT,
+      }}>
       {/* all topics filter */}
       {Object.keys(topics)?.length > 0 && showTopics ? (
         <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
@@ -144,13 +150,18 @@ const FilterTopics = () => {
                       padding: Layout.normalize(7),
                       borderWidth: 1,
                       borderColor:
-                        selectedTopics.length === 0 ? '#ff4e02' : 'grey',
+                        selectedTopics.length === 0
+                          ? '#ff4e02'
+                          : STYLES.$TEXT_COLOR.SECONDARY_TEXT_DARK,
                       borderRadius: Layout.normalize(5),
                     }}>
                     <Text
                       style={{
                         fontSize: Layout.normalize(14),
-                        color: selectedTopics.length === 0 ? '#ff4e02' : 'grey',
+                        color:
+                          selectedTopics.length === 0
+                            ? '#ff4e02'
+                            : STYLES.$TEXT_COLOR.SECONDARY_TEXT_DARK,
                         fontWeight: '400',
                       }}>
                       {'All'}
@@ -170,13 +181,17 @@ const FilterTopics = () => {
                           alignItems: 'center',
                           padding: Layout.normalize(7),
                           borderWidth: 1,
-                          borderColor: isSelected ? '#ff4e02' : 'grey',
+                          borderColor: isSelected
+                            ? '#ff4e02'
+                            : STYLES.$TEXT_COLOR.SECONDARY_TEXT_DARK,
                           borderRadius: Layout.normalize(5),
                         }}>
                         <Text
                           style={{
                             fontSize: Layout.normalize(14),
-                            color: isSelected ? '#ff4e02' : 'grey',
+                            color: isSelected
+                              ? '#ff4e02'
+                              : STYLES.$TEXT_COLOR.SECONDARY_TEXT_DARK,
                             fontWeight: '400',
                           }}>
                           {topics[item]?.name}

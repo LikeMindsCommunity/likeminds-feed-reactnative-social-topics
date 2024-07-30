@@ -22,8 +22,6 @@ import {
   Linking,
   PermissionsAndroid,
   Platform,
-  SafeAreaView,
-  ViewStyle,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {navigationRef} from './RootNavigation';
@@ -46,9 +44,6 @@ import CreatePollScreenWrapper from './Wrappers/createPollScreenWrapper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
 import TopicFeedWrapper from './Wrappers/topicFeedScreenWrapper';
-import {LMCoreCallbacks} from '@likeminds.community/feed-rn-core/setupFeed';
-import {InitiateUserRequest} from '@likeminds.community/feed-rn';
-import {Client} from '@likeminds.community/feed-rn-core/client';
 
 class CustomCallbacks implements LMFeedCallbacks, LMCarouselScreenCallbacks {
   onEventTriggered(eventName: string, eventProperties?: Map<string, string>) {
@@ -66,8 +61,8 @@ const App = () => {
   const Stack = createNativeStackNavigator();
   const [users, setUsers] = useState<any>({
     apiKey: '6749d246-1cd1-4cd7-8fe0-62b6c6991aae',
-    userUniqueID: 'CM',
-    userName: 'CM',
+    userUniqueID: 'Test',
+    userName: 'Test',
   });
   const [apiKey, setApiKey] = useState(
     Credentials?.apiKey?.length > 0 ? Credentials?.apiKey : users?.apiKey,
@@ -82,8 +77,6 @@ const App = () => {
   );
   const [myClient, setMyClient] = useState();
   const [isTrue, setIsTrue] = useState(true);
-  const [accessToken, setAccessToken] = useState('');
-  const [refreshToken, setRefreshToken] = useState('');
 
   useEffect(() => {
     setUserName(
@@ -100,26 +93,6 @@ const App = () => {
       Credentials?.apiKey?.length > 0 ? Credentials?.apiKey : users?.apiKey,
     );
   }, [users, isTrue]);
-
-  useEffect(() => {
-    async function callInitiateAPI() {
-      const payload: any = {
-        is_guest: false,
-        user_name: userName,
-        user_unique_id: userUniqueID,
-        api_key: apiKey,
-      };
-      const res: any = await initiateAPI(payload);
-      if (res) {
-        setAccessToken(res?.data?.access_token);
-        setRefreshToken(res?.data?.refresh_token);
-      }
-    }
-
-    if (apiKey) {
-      callInitiateAPI();
-    }
-  }, [apiKey]);
 
   useEffect(() => {
     if (apiKey) {
@@ -225,60 +198,60 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}>
-        {userName && userUniqueID && apiKey && myClient ? (
-          <GestureHandlerRootView style={{flex: 1}}>
-            <LMOverlayProvider
-              myClient={myClient}
-              apiKey={apiKey}
-              userName={userName}
-              userUniqueId={userUniqueID}
-              lmFeedInterface={lmFeedInterface}
-              postListStyle={postListStyles}>
-              <NavigationContainer ref={navigationRef} independent={true}>
-                <Stack.Navigator screenOptions={{headerShown: false}}>
-                  <Stack.Screen name={UNIVERSAL_FEED} component={FeedWrapper} />
-                  <Stack.Screen name={POST_DETAIL} component={DetailWrapper} />
-                  <Stack.Screen name={CREATE_POST} component={CreateWrapper} />
-                  <Stack.Screen
-                    name={POST_LIKES_LIST}
-                    component={LikesWrapper}
-                  />
-                  <Stack.Screen
-                    name={TOPIC_FEED}
-                    component={TopicFeedWrapper}
-                    options={{headerShown: true}}
-                  />
-                  <Stack.Screen
-                    name={NOTIFICATION_FEED}
-                    component={NotificationWrapper}
-                  />
-                  <Stack.Screen
-                    options={{gestureEnabled: false}}
-                    name={CAROUSEL_SCREEN}
-                    component={CarouselScreen}
-                  />
-                  <Stack.Screen
-                    name={POLL_RESULT}
-                    component={LMFeedPollResult}
-                    options={{
-                      gestureEnabled: false,
-                    }}
-                  />
-                  <Stack.Screen
-                    name={CREATE_POLL_SCREEN}
-                    component={CreatePollScreenWrapper}
-                  />
-                </Stack.Navigator>
-              </NavigationContainer>
-            </LMOverlayProvider>
-          </GestureHandlerRootView>
-        ) : null}
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{
+        flex: 1,
+        backgroundColor: STYLES.$IS_DARK_THEME
+          ? STYLES.$BACKGROUND_COLORS.DARK
+          : STYLES.$BACKGROUND_COLORS.LIGHT,
+      }}>
+      {userName && userUniqueID && apiKey && myClient ? (
+        <GestureHandlerRootView style={{flex: 1}}>
+          <LMOverlayProvider
+            myClient={myClient}
+            apiKey={apiKey}
+            userName={userName}
+            userUniqueId={userUniqueID}
+            lmFeedInterface={lmFeedInterface}
+            postListStyle={postListStyles}>
+            <NavigationContainer ref={navigationRef} independent={true}>
+              <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name={UNIVERSAL_FEED} component={FeedWrapper} />
+                <Stack.Screen name={POST_DETAIL} component={DetailWrapper} />
+                <Stack.Screen name={CREATE_POST} component={CreateWrapper} />
+                <Stack.Screen name={POST_LIKES_LIST} component={LikesWrapper} />
+                <Stack.Screen
+                  name={TOPIC_FEED}
+                  component={TopicFeedWrapper}
+                  options={{headerShown: true}}
+                />
+                <Stack.Screen
+                  name={NOTIFICATION_FEED}
+                  component={NotificationWrapper}
+                />
+                <Stack.Screen
+                  options={{gestureEnabled: false}}
+                  name={CAROUSEL_SCREEN}
+                  component={CarouselScreen}
+                />
+                <Stack.Screen
+                  name={POLL_RESULT}
+                  component={LMFeedPollResult}
+                  options={{
+                    gestureEnabled: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={CREATE_POLL_SCREEN}
+                  component={CreatePollScreenWrapper}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </LMOverlayProvider>
+        </GestureHandlerRootView>
+      ) : null}
+    </KeyboardAvoidingView>
   );
 };
 

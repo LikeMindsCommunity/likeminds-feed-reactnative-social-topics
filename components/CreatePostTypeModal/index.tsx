@@ -21,6 +21,7 @@ import {SET_PREDEFINED_TOPICS} from '@likeminds.community/feed-rn-core/store/typ
 import {LMFeedAnalytics} from '@likeminds.community/feed-rn-core';
 import {Events} from '@likeminds.community/feed-rn-core/enums/Events';
 import {STATE_ADMIN} from '@likeminds.community/feed-rn-core/constants/Strings';
+import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
 
 const CreatePostTypeModal = ({
   actionAlertModalVisible,
@@ -35,17 +36,35 @@ const CreatePostTypeModal = ({
   const memberData = useAppSelector(state => state.login.member);
 
   return (
-    <View style={{backgroundColor: 'black'}}>
+    <View
+      style={{
+        backgroundColor: STYLES.$IS_DARK_THEME
+          ? STYLES.$BACKGROUND_COLORS.DARK
+          : STYLES.$BACKGROUND_COLORS.LIGHT,
+      }}>
       <Modal
         transparent={true}
         visible={actionAlertModalVisible}
         onRequestClose={hideActionModal}>
         <Pressable style={styles.centeredView} onPress={hideActionModal}>
           <View
-            style={{backgroundColor: 'black', padding: 20, borderRadius: 10}}>
+            style={{
+              backgroundColor: STYLES.$IS_DARK_THEME
+                ? STYLES.$BACKGROUND_COLORS.DARK
+                : STYLES.$BACKGROUND_COLORS.LIGHT,
+              padding: 20,
+              borderRadius: 10,
+            }}>
             <Pressable
               onPress={() => {}}
-              style={[styles.modalView, {backgroundColor: 'black'}]}>
+              style={[
+                styles.modalView,
+                {
+                  backgroundColor: STYLES.$IS_DARK_THEME
+                    ? STYLES.$BACKGROUND_COLORS.DARK
+                    : STYLES.$BACKGROUND_COLORS.LIGHT,
+                },
+              ]}>
               <View style={{padding: 15, paddingBottom: 10}}>
                 <View
                   style={{
