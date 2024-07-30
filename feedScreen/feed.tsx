@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+  LMFilterTopics,
   LMPostUploadIndicator,
   LMUniversalFeedHeader,
   PostsList,
@@ -31,7 +32,7 @@ const Feed = () => {
   // }, [FCMToken]);
 
   return (
-    <View style={{flex: 1, backgroundColor: 'black'}}>
+    <View style={{flex: 1}}>
       <UniversalFeed>
         <LMUniversalFeedHeader />
         <FilterTopics />

@@ -1,7 +1,9 @@
 import {Text, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {useUniversalFeedContext} from '@likeminds.community/feed-rn-core';
-import {UniversalFeedContextValues} from '@likeminds.community/feed-rn-core/context';
+import {
+  UniversalFeedContextValues,
+} from '@likeminds.community/feed-rn-core/context';
 import {useLMFeedStyles} from '@likeminds.community/feed-rn-core/lmFeedProvider';
 import {styles} from '@likeminds.community/feed-rn-core/screens/universalFeed/styles';
 import CreatePostTypeModal from '../CreatePostTypeModal';

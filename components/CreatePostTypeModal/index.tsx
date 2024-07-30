@@ -96,7 +96,11 @@ const CreatePostTypeModal = ({
 
                             newPostButtonClickProps
                               ? newPostButtonClickProps()
-                              : newPostButtonClick();
+                              : newPostButtonClick(
+                                  topics[item]?.name === 'Transformations'
+                                    ? true
+                                    : false,
+                                );
                             LMFeedAnalytics.track(Events.POST_CREATION_STARTED);
                             hideActionModal();
                           }}
