@@ -1,7 +1,7 @@
 import React from 'react';
 import {LMFeedNotificationFeedScreen} from '@likeminds.community/feed-rn-core';
 import {View} from 'react-native';
-import STYLES from '@likeminds.community/feed-rn-core-beta/constants/Styles';
+import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
 
 const NotificationScreen = () => {
   return (

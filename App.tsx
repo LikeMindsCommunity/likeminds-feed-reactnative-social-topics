@@ -38,8 +38,6 @@ import {
   POLL_RESULT,
   TOPIC_FEED,
 } from '@likeminds.community/feed-rn-core/constants/screenNames';
-import {initiateAPI} from './registerDeviceApi';
-import {carouselScreenStyle, createPollStyle, pollStyle} from './styles';
 import CreatePollScreenWrapper from './Wrappers/createPollScreenWrapper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
