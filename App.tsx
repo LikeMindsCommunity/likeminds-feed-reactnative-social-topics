@@ -224,39 +224,6 @@ const App = () => {
     },
   };
 
-  // useEffect(() => {
-  //   STYLES.setTheme({
-  //     primaryColor: '#5046E5',
-  //     isDarkTheme: false,
-  //     hue: 244,
-  //   });
-  // }, []);
-
-  const callbackClass = new LMCoreCallbacks(
-    (a: string, b: string) => {
-      // when accessToken is expired then flow comes here
-      console.log(`Testing ${a} and ${b}`);
-    },
-    async function () {
-      // here client should call the initiateApi and return accessToken and refreshToken
-      console.log('onRefreshTokenExpired called');
-      const initiateUserRequest = InitiateUserRequest.builder()
-        .setUserName(userName)
-        .setApiKey(apiKey)
-        .setUUID(userUniqueID)
-        .build();
-      const initiateUserResponse: any = await Client.myClient.initiateUser(
-        initiateUserRequest,
-      );
-      const accessToken = initiateUserResponse?.accessToken;
-      const refreshToken = initiateUserResponse?.refreshToken;
-      return {
-        accessToken,
-        refreshToken,
-      };
-    },
-  );
-
   return (
     <SafeAreaView>
       <KeyboardAvoidingView
@@ -270,7 +237,6 @@ const App = () => {
               userName={userName}
               userUniqueId={userUniqueID}
               lmFeedInterface={lmFeedInterface}
-              callbackClass={callbackClass}
               postListStyle={postListStyles}>
               <NavigationContainer ref={navigationRef} independent={true}>
                 <Stack.Navigator screenOptions={{headerShown: false}}>
