@@ -15,6 +15,11 @@ import {
   LMCarouselScreenCallbacks,
   NAVIGATED_FROM_NOTIFICATION,
   initMyClient,
+  DetailWrapper,
+  CreateWrapper,
+  LikesWrapper,
+  NotificationWrapper,
+  CreatePollScreenWrapper,
 } from '@likeminds.community/feed-rn-core';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
@@ -22,15 +27,10 @@ import {
   Linking,
   PermissionsAndroid,
   Platform,
-  ViewStyle,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {navigationRef} from './RootNavigation';
 import FeedWrapper from './feedScreen/feedWrapper';
-import DetailWrapper from './feedScreen/detailScreenWrapper';
-import CreateWrapper from './feedScreen/createScreenWrapper';
-import LikesWrapper from './feedScreen/likesWrapper';
-import NotificationWrapper from './feedScreen/notificationWrapper';
 import messaging from '@react-native-firebase/messaging';
 import notifee, {EventType} from '@notifee/react-native';
 import {Credentials} from './login/credentials';
@@ -40,7 +40,6 @@ import {
 } from '@likeminds.community/feed-rn-core/constants/screenNames';
 import {initiateAPI} from './registerDeviceApi';
 import {carouselScreenStyle, createPollStyle, pollStyle} from './styles';
-import CreatePollScreenWrapper from './feedScreen/createPollScreenWrapper';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
 
@@ -60,8 +59,8 @@ const App = () => {
   const Stack = createNativeStackNavigator();
   const [users, setUsers] = useState<any>({
     apiKey: '224beee7-4667-40e1-8fa3-592afdc9d37b',
-    userUniqueID: 'Jai',
-    userName: 'Jai',
+    userUniqueID: 'Arnav New',
+    userName: 'Arnav New',
   });
   const [apiKey, setApiKey] = useState(
     Credentials?.apiKey?.length > 0 ? Credentials?.apiKey : users?.apiKey,
@@ -209,6 +208,13 @@ const App = () => {
       hue: 18,
       isDarkTheme: true,
       primaryColor: '#ff4e02',
+      fontTypes: {
+        fontFamilyLight: 'Montserrat-Light',
+        fontFamilyMedium: 'Montserrat-Medium',
+        fontFamilySemiBold: 'Montserrat-SemiBold',
+        fontFamilyBold: 'Montserrat-Bold',
+        fontFamilyBlack: 'Montserrat-Black',
+      },
     });
   });
 
@@ -235,7 +241,8 @@ const App = () => {
             accessToken={accessToken}
             refreshToken={refreshToken}
             lmFeedInterface={lmFeedInterface}
-            postListStyle={footerStyle}>
+            postListStyle={footerStyle}
+            pollStyle={pollStyle}>
             <NavigationContainer ref={navigationRef} independent={true}>
               <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name={UNIVERSAL_FEED} component={FeedWrapper} />

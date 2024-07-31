@@ -59,7 +59,7 @@ const CreatePostTypeModal = ({
               <ScrollView style={{display: 'flex', flexDirection: 'column'}}>
                 {Object.keys(topics)?.map((item, index) => {
                   const isCoachCentre =
-                    topics[item]?.name === "Coach's Center" ? true : false;
+                    topics[item]?.name === "Coach's Corner" ? true : false;
 
                   return (
                     <View key={index}>

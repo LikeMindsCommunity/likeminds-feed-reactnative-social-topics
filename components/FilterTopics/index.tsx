@@ -143,14 +143,20 @@ const FilterTopics = () => {
                       padding: Layout.normalize(7),
                       borderWidth: 1,
                       borderColor:
-                        selectedTopics.length === 0 ? '#ff4e02' : 'grey',
+                        selectedTopics.length === 0 ? '#ffffff' : 'grey',
                       borderRadius: Layout.normalize(5),
+                      backgroundColor:
+                        selectedTopics.length === 0 ? 'grey' : 'black',
                     }}>
                     <Text
                       style={{
                         fontSize: Layout.normalize(14),
-                        color: selectedTopics.length === 0 ? '#ff4e02' : 'grey',
-                        fontWeight: '400',
+                        color:
+                          selectedTopics?.length === 0 ? '#ffffff' : 'grey',
+                        fontFamily:
+                          selectedTopics?.length === 0
+                            ? 'Montserrat-Bold'
+                            : 'Montserrat-SemiBold',
                       }}>
                       {'All'}
                     </Text>
@@ -169,14 +175,17 @@ const FilterTopics = () => {
                           alignItems: 'center',
                           padding: Layout.normalize(7),
                           borderWidth: 1,
-                          borderColor: isSelected ? '#ff4e02' : 'grey',
+                          borderColor: isSelected ? '#ffffff' : 'grey',
                           borderRadius: Layout.normalize(5),
+                          backgroundColor: isSelected ? 'grey' : 'black',
                         }}>
                         <Text
                           style={{
                             fontSize: Layout.normalize(14),
-                            color: isSelected ? '#ff4e02' : 'grey',
-                            fontWeight: '400',
+                            color: isSelected ? '#ffffff' : 'grey',
+                            fontFamily: isSelected
+                              ? 'Montserrat-Bold'
+                              : 'Montserrat-SemiBold',
                           }}>
                           {topics[item]?.name}
                         </Text>
@@ -192,7 +201,13 @@ const FilterTopics = () => {
       {/* posts list section */}
       {!isAnyMatchFound ? (
         <View style={[styles.justifyCenter]}>
-          <Text style={styles.title}>No matching post found</Text>
+          <Text
+            style={[
+              styles.title,
+              {fontFamily: 'Montserrat-SemiBold', color: '#ffffff'},
+            ]}>
+            No matching post found
+          </Text>
         </View>
       ) : (
         <></>
