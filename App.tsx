@@ -43,7 +43,6 @@ import {initiateAPI} from './registerDeviceApi';
 import {carouselScreenStyle, createPollStyle, pollStyle} from './styles';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
-import TopicFeedWrapper from './Wrappers/topicFeedScreenWrapper';
 
 class CustomCallbacks implements LMFeedCallbacks, LMCarouselScreenCallbacks {
   onEventTriggered(eventName: string, eventProperties?: Map<string, string>) {
@@ -61,8 +60,8 @@ const App = () => {
   const Stack = createNativeStackNavigator();
   const [users, setUsers] = useState<any>({
     apiKey: '224beee7-4667-40e1-8fa3-592afdc9d37b',
-    userUniqueID: 'Arnav New',
-    userName: 'Arnav New',
+    userUniqueID: 'Jai Neww',
+    userName: 'Jai Neww',
   });
   const [apiKey, setApiKey] = useState(
     Credentials?.apiKey?.length > 0 ? Credentials?.apiKey : users?.apiKey,
@@ -229,11 +228,6 @@ const App = () => {
                 <Stack.Screen name={POST_DETAIL} component={DetailWrapper} />
                 <Stack.Screen name={CREATE_POST} component={CreateWrapper} />
                 <Stack.Screen name={POST_LIKES_LIST} component={LikesWrapper} />
-                <Stack.Screen
-                  name={TOPIC_FEED}
-                  component={TopicFeedWrapper}
-                  options={{headerShown: true}}
-                />
                 <Stack.Screen
                   name={NOTIFICATION_FEED}
                   component={NotificationWrapper}

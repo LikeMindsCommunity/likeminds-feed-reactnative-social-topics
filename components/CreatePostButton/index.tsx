@@ -33,6 +33,7 @@ const CreatePostButton = () => {
               : styles.newPostButtonDisable,
             {top: Layout.window.height - 150},
             universalFeedStyle?.newPostButtonStyle,
+            {borderRadius: 5},
           ]}
           // handles post uploading status and member rights to create post
           onPress={() => {
