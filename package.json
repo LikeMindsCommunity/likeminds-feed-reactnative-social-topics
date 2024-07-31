@@ -10,9 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@likeminds.community/feed-js": "1.9.1",
-    "@likeminds.community/feed-rn-core": "1.4.0",
+    "@likeminds.community/feed-rn": "1.0.0",
+    "@likeminds.community/feed-rn-core": "1.6.0",
     "@notifee/react-native": "7.8.2",
+    "@react-native-async-storage/async-storage": "1.24.0",
     "@react-native-community/datetimepicker": "8.0.1",
     "@react-native-community/netinfo": "11.3.0",
     "@react-native-community/slider": "4.5.2",
@@ -20,13 +21,13 @@
     "@react-native-firebase/messaging": "19.1.2",
     "@react-navigation/material-top-tabs": "6.6.2",
     "@react-navigation/native": "6.1.9",
-    "@react-navigation/native-stack": "^6.11.0",
+    "@react-navigation/native-stack": "6.11.0",
     "@react-navigation/stack": "6.3.20",
     "@types/react-native-video": "5.0.14",
     "diff": "5.1.0",
     "react": "18.2.0",
     "react-native": "0.74.3",
-    "react-native-create-thumbnail": "1.6.4",
+    "react-native-create-thumbnail": "2.0.0",
     "react-native-device-info": "10.13.1",
     "react-native-document-picker": "9.1.0",
     "react-native-file-viewer": "2.1.5",
@@ -56,7 +57,7 @@
     "jest": "^29.6.3",
     "prettier": "2.8.8",
     "react-test-renderer": "18.2.0",
-    "typescript": "5.0.4"
+    "typescript": "5.3.3"
   },
   "engines": {
     "node": ">=18"

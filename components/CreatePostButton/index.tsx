@@ -5,6 +5,7 @@ import {UniversalFeedContextValues} from '@likeminds.community/feed-rn-core/cont
 import {useLMFeedStyles} from '@likeminds.community/feed-rn-core/lmFeedProvider';
 import {styles} from '@likeminds.community/feed-rn-core/screens/universalFeed/styles';
 import CreatePostTypeModal from '../CreatePostTypeModal';
+import Layout from '@likeminds.community/feed-rn-core/constants/Layout';
 
 const CreatePostButton = () => {
   const [actionAlertModalVisible, setActionAlertModalVisible] = useState(false);
@@ -30,6 +31,7 @@ const CreatePostButton = () => {
             showCreatePost
               ? styles.newPostButtonEnable
               : styles.newPostButtonDisable,
+            {top: Layout.window.height - 150},
             universalFeedStyle?.newPostButtonStyle,
           ]}
           // handles post uploading status and member rights to create post

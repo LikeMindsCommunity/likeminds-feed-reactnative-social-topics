@@ -14,6 +14,7 @@ import {
 } from '@likeminds.community/feed-rn-core/store/types/types';
 import Layout from '@likeminds.community/feed-rn-core/constants/Layout';
 import {styles} from '@likeminds.community/feed-rn-core/screens/universalFeed/styles';
+import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
 
 const FilterTopics = () => {
   const dispatch = useAppDispatch();
@@ -120,13 +121,19 @@ const FilterTopics = () => {
   }, [mappedTopics, feedData]);
 
   return (
-    <View>
+    <View
+      style={{
+        backgroundColor: STYLES.$IS_DARK_THEME
+          ? STYLES.$BACKGROUND_COLORS.DARK
+          : STYLES.$BACKGROUND_COLORS.LIGHT,
+      }}>
       {/* all topics filter */}
       {Object.keys(topics)?.length > 0 && showTopics ? (
         <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
           <ScrollView
             style={{flexGrow: 0, margin: Layout.normalize(10)}}
-            horizontal={true}>
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}>
             <View style={{flexDirection: 'row'}}>
               <View style={{margin: Layout.normalize(5)}}>
                 <TouchableOpacity

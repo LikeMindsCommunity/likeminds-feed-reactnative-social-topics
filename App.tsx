@@ -30,18 +30,20 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {navigationRef} from './RootNavigation';
-import FeedWrapper from './feedScreen/feedWrapper';
+import FeedWrapper from './Wrappers/feedWrapper';
 import messaging from '@react-native-firebase/messaging';
 import notifee, {EventType} from '@notifee/react-native';
 import {Credentials} from './login/credentials';
 import {
   CREATE_POLL_SCREEN,
   POLL_RESULT,
+  TOPIC_FEED,
 } from '@likeminds.community/feed-rn-core/constants/screenNames';
 import {initiateAPI} from './registerDeviceApi';
 import {carouselScreenStyle, createPollStyle, pollStyle} from './styles';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
+import TopicFeedWrapper from './Wrappers/topicFeedScreenWrapper';
 
 class CustomCallbacks implements LMFeedCallbacks, LMCarouselScreenCallbacks {
   onEventTriggered(eventName: string, eventProperties?: Map<string, string>) {
@@ -75,8 +77,6 @@ const App = () => {
   );
   const [myClient, setMyClient] = useState();
   const [isTrue, setIsTrue] = useState(true);
-  const [accessToken, setAccessToken] = useState('');
-  const [refreshToken, setRefreshToken] = useState('');
 
   useEffect(() => {
     setUserName(
@@ -95,29 +95,8 @@ const App = () => {
   }, [users, isTrue]);
 
   useEffect(() => {
-    async function callInitiateAPI() {
-      const payload: any = {
-        is_guest: false,
-        user_name: userName,
-        user_unique_id: userUniqueID,
-        api_key: apiKey,
-      };
-      const res: any = await initiateAPI(payload);
-      if (res) {
-        setAccessToken(res?.data?.access_token);
-        setRefreshToken(res?.data?.refresh_token);
-      }
-    }
-
-    if (apiKey) {
-      callInitiateAPI();
-    }
-  }, [apiKey]);
-
-  useEffect(() => {
     if (apiKey) {
       const res: any = initMyClient();
-      console.log('resss', res);
       setMyClient(res);
     }
   }, [isTrue, apiKey]);
@@ -218,30 +197,31 @@ const App = () => {
     });
   });
 
-  const footerStyle = {
+  const postListStyles = {
     footer: {
       showBookMarkIcon: false,
       showShareIcon: false,
-      likeIconButton: {
-        icon: {
-          color: 'grey',
-        },
-      },
     },
   };
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{flex: 1}}>
+      style={{
+        flex: 1,
+        backgroundColor: STYLES.$IS_DARK_THEME
+          ? STYLES.$BACKGROUND_COLORS.DARK
+          : STYLES.$BACKGROUND_COLORS.LIGHT,
+      }}>
       {userName && userUniqueID && apiKey && myClient ? (
         <GestureHandlerRootView style={{flex: 1}}>
           <LMOverlayProvider
             myClient={myClient}
-            accessToken={accessToken}
-            refreshToken={refreshToken}
+            apiKey={apiKey}
+            userName={userName}
+            userUniqueId={userUniqueID}
             lmFeedInterface={lmFeedInterface}
-            postListStyle={footerStyle}
+            postListStyle={postListStyles}
             pollStyle={pollStyle}>
             <NavigationContainer ref={navigationRef} independent={true}>
               <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -249,6 +229,11 @@ const App = () => {
                 <Stack.Screen name={POST_DETAIL} component={DetailWrapper} />
                 <Stack.Screen name={CREATE_POST} component={CreateWrapper} />
                 <Stack.Screen name={POST_LIKES_LIST} component={LikesWrapper} />
+                <Stack.Screen
+                  name={TOPIC_FEED}
+                  component={TopicFeedWrapper}
+                  options={{headerShown: true}}
+                />
                 <Stack.Screen
                   name={NOTIFICATION_FEED}
                   component={NotificationWrapper}
