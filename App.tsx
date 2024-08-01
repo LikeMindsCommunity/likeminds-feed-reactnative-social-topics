@@ -27,6 +27,7 @@ import {
   Linking,
   PermissionsAndroid,
   Platform,
+  View,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {navigationRef} from './RootNavigation';
@@ -37,10 +38,8 @@ import {Credentials} from './login/credentials';
 import {
   CREATE_POLL_SCREEN,
   POLL_RESULT,
-  TOPIC_FEED,
 } from '@likeminds.community/feed-rn-core/constants/screenNames';
-import {initiateAPI} from './registerDeviceApi';
-import {carouselScreenStyle, createPollStyle, pollStyle} from './styles';
+import {pollStyle, postListStyles} from './styles';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import STYLES from '@likeminds.community/feed-rn-core/constants/Styles';
 
@@ -185,7 +184,7 @@ const App = () => {
     STYLES.setTheme({
       hue: 18,
       isDarkTheme: true,
-      primaryColor: '#ff4e02',
+      primaryColor: '#d26232',
       fontTypes: {
         fontFamilyLight: 'Montserrat-Light',
         fontFamilyMedium: 'Montserrat-Medium',
@@ -196,64 +195,62 @@ const App = () => {
     });
   });
 
-  const postListStyles = {
-    footer: {
-      showBookMarkIcon: false,
-      showShareIcon: false,
-    },
-  };
-
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{
-        flex: 1,
-        backgroundColor: STYLES.$IS_DARK_THEME
-          ? STYLES.$BACKGROUND_COLORS.DARK
-          : STYLES.$BACKGROUND_COLORS.LIGHT,
-      }}>
-      {userName && userUniqueID && apiKey && myClient ? (
-        <GestureHandlerRootView style={{flex: 1}}>
-          <LMOverlayProvider
-            myClient={myClient}
-            apiKey={apiKey}
-            userName={userName}
-            userUniqueId={userUniqueID}
-            lmFeedInterface={lmFeedInterface}
-            postListStyle={postListStyles}
-            pollStyle={pollStyle}>
-            <NavigationContainer ref={navigationRef} independent={true}>
-              <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen name={UNIVERSAL_FEED} component={FeedWrapper} />
-                <Stack.Screen name={POST_DETAIL} component={DetailWrapper} />
-                <Stack.Screen name={CREATE_POST} component={CreateWrapper} />
-                <Stack.Screen name={POST_LIKES_LIST} component={LikesWrapper} />
-                <Stack.Screen
-                  name={NOTIFICATION_FEED}
-                  component={NotificationWrapper}
-                />
-                <Stack.Screen
-                  options={{gestureEnabled: false}}
-                  name={CAROUSEL_SCREEN}
-                  component={CarouselScreen}
-                />
-                <Stack.Screen
-                  name={POLL_RESULT}
-                  component={LMFeedPollResult}
-                  options={{
-                    gestureEnabled: false,
-                  }}
-                />
-                <Stack.Screen
-                  name={CREATE_POLL_SCREEN}
-                  component={CreatePollScreenWrapper}
-                />
-              </Stack.Navigator>
-            </NavigationContainer>
-          </LMOverlayProvider>
-        </GestureHandlerRootView>
-      ) : null}
-    </KeyboardAvoidingView>
+    <View style={{flex: 1}}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{
+          flex: 1,
+          backgroundColor: STYLES.$IS_DARK_THEME
+            ? STYLES.$BACKGROUND_COLORS.DARK
+            : STYLES.$BACKGROUND_COLORS.LIGHT,
+        }}>
+        {userName && userUniqueID && apiKey && myClient ? (
+          <GestureHandlerRootView style={{flex: 1}}>
+            <LMOverlayProvider
+              myClient={myClient}
+              apiKey={apiKey}
+              userName={userName}
+              userUniqueId={userUniqueID}
+              lmFeedInterface={lmFeedInterface}
+              postListStyle={postListStyles}
+              pollStyle={pollStyle}>
+              <NavigationContainer ref={navigationRef} independent={true}>
+                <Stack.Navigator screenOptions={{headerShown: false}}>
+                  <Stack.Screen name={UNIVERSAL_FEED} component={FeedWrapper} />
+                  <Stack.Screen name={POST_DETAIL} component={DetailWrapper} />
+                  <Stack.Screen name={CREATE_POST} component={CreateWrapper} />
+                  <Stack.Screen
+                    name={POST_LIKES_LIST}
+                    component={LikesWrapper}
+                  />
+                  <Stack.Screen
+                    name={NOTIFICATION_FEED}
+                    component={NotificationWrapper}
+                  />
+                  <Stack.Screen
+                    options={{gestureEnabled: false}}
+                    name={CAROUSEL_SCREEN}
+                    component={CarouselScreen}
+                  />
+                  <Stack.Screen
+                    name={POLL_RESULT}
+                    component={LMFeedPollResult}
+                    options={{
+                      gestureEnabled: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name={CREATE_POLL_SCREEN}
+                    component={CreatePollScreenWrapper}
+                  />
+                </Stack.Navigator>
+              </NavigationContainer>
+            </LMOverlayProvider>
+          </GestureHandlerRootView>
+        ) : null}
+      </KeyboardAvoidingView>
+    </View>
   );
 };
 
