@@ -58,9 +58,9 @@ const lmFeedInterface = new CustomCallbacks();
 const App = () => {
   const Stack = createNativeStackNavigator();
   const [users, setUsers] = useState<any>({
-    apiKey: '224beee7-4667-40e1-8fa3-592afdc9d37b',
-    userUniqueID: 'Jai Neww',
-    userName: 'Jai Neww',
+    apiKey: '6749d246-1cd1-4cd7-8fe0-62b6c6991aae',
+    userUniqueID: 'Jai',
+    userName: 'Jai',
   });
   const [apiKey, setApiKey] = useState(
     Credentials?.apiKey?.length > 0 ? Credentials?.apiKey : users?.apiKey,
