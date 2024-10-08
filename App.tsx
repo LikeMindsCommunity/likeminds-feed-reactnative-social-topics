@@ -15,12 +15,12 @@ import {
   LMCarouselScreenCallbacks,
   NAVIGATED_FROM_NOTIFICATION,
   initMyClient,
-  DetailWrapper,
-  CreateWrapper,
-  LikesWrapper,
-  NotificationWrapper,
-  CreatePollScreenWrapper,
+  LMSocialFeedPostDetailScreen,
+  LMCreatePollScreen,
+  LMLikesScreen,
+  LMNotificationScreen,
 } from '@likeminds.community/feed-rn-core';
+import LMSocialFeedCreateScreen from '@likeminds.community/feed-rn-core/wrappers/socialFeedCreateWrapper';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   KeyboardAvoidingView,
@@ -58,9 +58,9 @@ const lmFeedInterface = new CustomCallbacks();
 const App = () => {
   const Stack = createNativeStackNavigator();
   const [users, setUsers] = useState<any>({
-    apiKey: '6749d246-1cd1-4cd7-8fe0-62b6c6991aae',
-    userUniqueID: 'Jai',
-    userName: 'Jai',
+    apiKey: '224beee7-4667-40e1-8fa3-592afdc9d37b',
+    userUniqueID: 'Jai Neww',
+    userName: 'Jai Neww',
   });
   const [apiKey, setApiKey] = useState(
     Credentials?.apiKey?.length > 0 ? Credentials?.apiKey : users?.apiKey,
@@ -193,6 +193,9 @@ const App = () => {
         fontFamilyBlack: 'Montserrat-Black',
       },
     });
+
+    STYLES.setPollStyle(pollStyle);
+    STYLES.setPostListStyles(postListStyles);
   });
 
   return (
@@ -212,21 +215,25 @@ const App = () => {
               apiKey={apiKey}
               userName={userName}
               userUniqueId={userUniqueID}
-              lmFeedInterface={lmFeedInterface}
-              postListStyle={postListStyles}
-              pollStyle={pollStyle}>
+              lmFeedInterface={lmFeedInterface}>
               <NavigationContainer ref={navigationRef} independent={true}>
                 <Stack.Navigator screenOptions={{headerShown: false}}>
                   <Stack.Screen name={UNIVERSAL_FEED} component={FeedWrapper} />
-                  <Stack.Screen name={POST_DETAIL} component={DetailWrapper} />
-                  <Stack.Screen name={CREATE_POST} component={CreateWrapper} />
+                  <Stack.Screen
+                    name={POST_DETAIL}
+                    component={LMSocialFeedPostDetailScreen}
+                  />
+                  <Stack.Screen
+                    name={CREATE_POST}
+                    component={LMSocialFeedCreateScreen}
+                  />
                   <Stack.Screen
                     name={POST_LIKES_LIST}
-                    component={LikesWrapper}
+                    component={LMLikesScreen}
                   />
                   <Stack.Screen
                     name={NOTIFICATION_FEED}
-                    component={NotificationWrapper}
+                    component={LMNotificationScreen}
                   />
                   <Stack.Screen
                     options={{gestureEnabled: false}}
@@ -242,7 +249,7 @@ const App = () => {
                   />
                   <Stack.Screen
                     name={CREATE_POLL_SCREEN}
-                    component={CreatePollScreenWrapper}
+                    component={LMCreatePollScreen}
                   />
                 </Stack.Navigator>
               </NavigationContainer>
