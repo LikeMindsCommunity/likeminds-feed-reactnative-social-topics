@@ -53,3 +53,7 @@ The project uses a predefined **API key** and **user credentials** for the Evolv
 3. Modify the hardcoded topic check inside the `<CreatePostButton />` component, specifically for the "Coach's Corner" topic, to meet your new requirements.
 
 This custom screen ensures that the user experience remains consistent with EvolvX's design principles while leveraging the robust features provided by the LikeMinds SDK.
+
+## License
+
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
